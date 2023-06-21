@@ -12,7 +12,9 @@ const port = process.env.PORT;
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1', routes);
-app.use((error, req, res) => {});
+app.use((error, req, res) => {
+    console.log(error)
+});
 
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

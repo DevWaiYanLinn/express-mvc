@@ -1,17 +1,20 @@
-export enum TDriver {
+export enum HashDriver {
     bcrypt = 'bcrypt',
     scrypt = 'scrypt',
     argon2 = 'argon2',
 }
+
 export type THasConfig = {
-    driver: TDriver;
+    driver: HashDriver
     bcrypt: {
         salt: number;
     };
 };
-export default {
-    driver: process.env.HASH_DRIVER || 'bcrypt',
+const hash: THasConfig = {
+    driver: (process.env.HASH_DRIVER as THasConfig['driver']) || 'bcrypt',
     bcrypt: {
-        salt: process.env.SALT || 10,
+        salt: Number(process.env.SALT) || 10,
     },
 };
+
+export default hash;

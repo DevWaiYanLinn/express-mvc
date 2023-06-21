@@ -1,9 +1,14 @@
-import Joi from "joi";
-    
+import Joi from 'joi';
+import prisma from '../prisma';
+
 class BaseController {
-    protected async validate(rule:any, data:any) {
-       const scheme = Joi.object(rule)
-       return scheme.validateAsync(data)
+    protected model = prisma;
+
+    public async validate(rule: any, data: any) {
+        return await Joi.object(rule)
+            .options({ abortEarly: false })
+            .validateAsync(data)
+            .catch((errors) => errors);
     }
 }
 
