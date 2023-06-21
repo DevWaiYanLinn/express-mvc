@@ -1,9 +1,8 @@
-
-import { Router } from "express"; 
-import UserController from "../../../../controllers/UserController";
+import { Router } from 'express';
+import UserController from '../../../../controllers/api/v1/users/UserController';
 
 const route = Router();
 
-route.get('/', UserController.getAll)
+route.get('/', UserController.getAll);
 
 export default route;
